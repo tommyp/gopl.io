@@ -25,6 +25,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 			os.Exit(1)
 		}
+		fmt.Println("status:", resp.Status)
 		_, err = io.Copy(os.Stdout, io.Reader(resp.Body))
 		resp.Body.Close()
 		if err != nil {
