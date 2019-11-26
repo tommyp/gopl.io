@@ -48,6 +48,10 @@ func corner(i, j int) (float64, float64) {
 	// Compute surface height z.
 	z := f(x, y)
 
+	if math.IsNaN(z) || math.IsInf(z, 1) {
+		return z, z
+	}
+
 	// Project (x,y,z) isometrically onto 2-D SVG canvas (sx,sy).
 	sx := width/2 + (x-y)*cos30*xyscale
 	sy := height/2 + (x+y)*sin30*xyscale - z*zscale
